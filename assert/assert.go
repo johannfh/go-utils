@@ -61,21 +61,21 @@ func Assert(truth bool, msg string, data ...any) {
 }
 
 // errors if [a] is not equal to [b]
-func Equals[T comparable](a, b T, msg string, data ...any) {
-    slog.Info("Equals Check", "a", a, "b", b)
+func Equal[T comparable](a, b T, msg string, data ...any) {
+    slog.Info("Equal Check", "a", a, "b", b)
 
     if a != b {
-        slog.Error("Equals#not equal encountered")
+        slog.Error("Equal#not equal encountered")
         runAssert(msg, data...)
     }
 }
 
 // errors if [a] is equal to [b]
-func NotEquals[T comparable](a, b T, msg string, data ...any) {
-    slog.Info("Not Equals Check", "a", a, "b", b)
+func NotEqual[T comparable](a, b T, msg string, data ...any) {
+    slog.Info("Not Equal Check", "a", a, "b", b)
 
     if a == b {
-        slog.Error("NotEquals#equal encountered")
+        slog.Error("NotEqual#equal encountered")
         runAssert(msg, data...)
     }
 }
