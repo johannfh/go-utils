@@ -66,6 +66,15 @@ func Never(msg string, data ...any) {
     runAssert(msg, data...)
 }
 
+// errors if an error is encountered
+func NoError(err error, msg string, data ...any) {
+    slog.Info("No Error Check", "err", err)
+    if err != nil {
+        slog.Error("NoError#error encountered")
+        runAssert(msg, data...)
+    }
+}
+
 // errors if [a] is not equal to [b]
 func Equal[T comparable](a, b T, msg string, data ...any) {
     slog.Info("Equal Check", "a", a, "b", b)
