@@ -60,6 +60,12 @@ func Assert(truth bool, msg string, data ...any) {
     }
 }
 
+// errors if called
+func Never(msg string, data ...any) {
+    slog.Error("Never#never called")
+    runAssert(msg, data...)
+}
+
 // errors if [a] is not equal to [b]
 func Equal[T comparable](a, b T, msg string, data ...any) {
     slog.Info("Equal Check", "a", a, "b", b)
