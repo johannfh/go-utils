@@ -71,6 +71,7 @@ func NoError(err error, msg string, data ...any) {
     slog.Info("No Error Check", "err", err)
     if err != nil {
         slog.Error("NoError#error encountered")
+        data = append(data, "err", err)
         runAssert(msg, data...)
     }
 }
