@@ -19,7 +19,7 @@ func IsEmpty(s string) bool {
 
 // Add a padding string to the left of every
 // non empty or whitespace line of the string
-func LeftPad(str string, padding string) string {
+func PrependString(str string, pre string) string {
     lines := strings.Split(str, "\n")
 
     for i := range lines {
@@ -27,7 +27,7 @@ func LeftPad(str string, padding string) string {
             continue
         }
 
-        lines[i] = fmt.Sprintf("%s%s", padding, lines[i])
+        lines[i] = fmt.Sprintf("%s%s", pre, lines[i])
     }
 
     return strings.Join(lines, "\n")
