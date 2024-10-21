@@ -3,18 +3,24 @@ package helpers
 import (
 	"fmt"
 	"strings"
+
+	"github.com/johannfh/go-utils/internal/utils"
 )
+
+
+// Check wether or not the object is empty
+func Empty(object interface{}) bool {
+    return utils.IsEmpty(object)
+}
+
+func NotEmpty(object interface{}) bool {
+    return !utils.IsEmpty(object)
+}
 
 // Generate a string consisting of '-'
 // with the provided length
 func Dashstring(length int) string {
     return strings.Repeat(string('-'), length)
-}
-
-// Check wether or not a string is empty or only
-// consists of whitespace as defined by Unicode
-func IsEmpty(s string) bool {
-    return len(strings.TrimSpace(s)) == 0
 }
 
 // Add a padding string to the left of every
@@ -23,7 +29,7 @@ func PrependString(str string, pre string) string {
     lines := strings.Split(str, "\n")
 
     for i := range lines {
-        if IsEmpty(lines[i]) {
+        if len(strings.TrimSpace(lines[i])) == 0 {
             continue
         }
 
