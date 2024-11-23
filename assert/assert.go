@@ -53,7 +53,7 @@ func runAssert(msg string, args ...any) {
 
 // errors if [truth] is `false`
 func Assert(truth bool, msg string, data ...any) {
-	slog.Info("Assert Check", "truth", truth)
+	slog.Debug("Assert Check", "truth", truth)
 	if !truth {
 		slog.Error("Assert#false encountered")
 		runAssert(msg, data...)
@@ -68,7 +68,7 @@ func Never(msg string, data ...any) {
 
 // errors if an error is encountered
 func NoError(err error, msg string, data ...any) {
-	slog.Info("No Error Check", "err", err)
+	slog.Debug("No Error Check", "err", err)
 	if err != nil {
 		slog.Error("NoError#error encountered")
 		data = append(data, "err", err)
@@ -78,7 +78,7 @@ func NoError(err error, msg string, data ...any) {
 
 // errors if [a] is not equal to [b]
 func Equal[T comparable](a, b T, msg string, data ...any) {
-	slog.Info("Equal Check", "a", a, "b", b)
+	slog.Debug("Equal Check", "a", a, "b", b)
 
 	if a != b {
 		slog.Error("Equal#not equal encountered")
@@ -88,7 +88,7 @@ func Equal[T comparable](a, b T, msg string, data ...any) {
 
 // errors if [a] is equal to [b]
 func NotEqual[T comparable](a, b T, msg string, data ...any) {
-	slog.Info("Not Equal Check", "a", a, "b", b)
+	slog.Debug("Not Equal Check", "a", a, "b", b)
 
 	if a == b {
 		slog.Error("NotEqual#equal encountered")
@@ -98,9 +98,9 @@ func NotEqual[T comparable](a, b T, msg string, data ...any) {
 
 // errors if [s] is not empty
 func Empty(s string, msg string, data ...any) {
-	slog.Info("Empty Check", "s", s)
+	slog.Debug("Empty Check", "s", s)
 
-	if !helpers.IsEmpty(s) {
+	if !helpers.Empty(s) {
 		slog.Error("EmptyCheck#not empty encountered")
 		runAssert(msg, data...)
 	}
@@ -108,9 +108,9 @@ func Empty(s string, msg string, data ...any) {
 
 // errors if [s] is empty
 func NotEmpty(s string, msg string, data ...any) {
-	slog.Info("Not Empty Check", "s", s)
+	slog.Debug("Not Empty Check", "s", s)
 
-	if helpers.IsEmpty(s) {
+	if helpers.Empty(s) {
 		slog.Error("NotEmpty#empty encountered")
 		runAssert(msg, data...)
 	}
@@ -118,7 +118,7 @@ func NotEmpty(s string, msg string, data ...any) {
 
 // errors if [item] is not `nil`
 func Nil(item any, msg string, data ...any) {
-	slog.Info("Nil Check", "item", item)
+	slog.Debug("Nil Check", "item", item)
 
 	if item != nil {
 		slog.Error("Nil#not nil encountered")
@@ -128,7 +128,7 @@ func Nil(item any, msg string, data ...any) {
 
 // errors if [item] is `nil`
 func NotNil(item any, msg string, data ...any) {
-	slog.Info("Not Nil Check", "item", item)
+	slog.Debug("Not Nil Check", "item", item)
 
 	if item == nil || reflect.ValueOf(item).Kind() == reflect.Ptr && reflect.ValueOf(item).IsNil() {
 		slog.Error("NotNil#nil encountered")
