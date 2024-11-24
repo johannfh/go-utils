@@ -29,11 +29,3 @@ func IsEmpty(object interface{}) bool {
 		return reflect.DeepEqual(object, zero.Interface())
 	}
 }
-
-func MergeFuncs(funcs ...func()) func() {
-	return func() {
-		for _, fn := range funcs {
-			fn()
-		}
-	}
-}

@@ -30,3 +30,11 @@ func PrependString(str string, pre string) string {
 
 	return strings.Join(lines, "\n")
 }
+
+func MergeFuncs(funcs ...func()) func() {
+	return func() {
+		for _, fn := range funcs {
+			fn()
+		}
+	}
+}
